@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapa de Sala</title>
+
+  <link rel="stylesheet" href="asset/css/style.css">
+  
+</head>
+<body>
+  <h1> Mapa de Sala</h1>
+  <div class="sala" id="sala"></div>
+  <div class="overlay" id="overlay"></div>
+
+  <div class="modal" id="modal">
+    <input type="text" id="inputNome" placeholder="Nome do Aluno" />
+    <button onclick="abrirLista()">Escolher da Lista</button>
+    <div style="margin-top:10px;">
+      <button onclick="registrarEvento('Conversando')">Conversando</button>
+      <button onclick="registrarEvento('Mexendo no celular')">Mexendo no celular</button>
+      <button onclick="registrarEvento('Fora do mapa de sala')">Fora do mapa de sala</button>
+      <button onclick="registrarEvento('Presente')">Marcar Presença</button>
+      <button onclick="removerAluno()">Remover Aluno</button>
+    </div>
+    <button onclick="fecharModal()">Fechar</button>
+  </div>
+
+  <div class="lista-modal" id="listaModal">
+    <h3>Lista de Alunos</h3>
+    <div id="listaAlunos"></div>
+    <button onclick="fecharLista()">Fechar</button>
+  </div>
+
+  <div id="log">
+    <h3>📋 Log de Ocorrências</h3>
+    <ul id="listaLog"></ul>
+    <button onclick="limparLog()">Limpar Log</button>
+    <button onclick="salvarLogComoArquivo()">Salvar como Bloco de Notas</button>
+  </div>
+
+  <script src="asset/js/script.js"></script>
+
+   <!-- Bora fazer uma tela para registrar os alunos e criar um mapa de sala novo!
+    
+   A-->
+</body>
+</html>

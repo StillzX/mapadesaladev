@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeskMap - Crie seu mapa de sala</title>
+
+  <!-- css bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+  <!-- css base home page -->
+  <link rel="stylesheet" href="asset/css/home_page.css">
+
+</head>
+
+<body class="bg-primary-subtle">
+
+  <header class="d-flex align-items-center justify-content-between bg-primary text-white py-1 px-4">
+    <div>
+      <h1 class="fw-bold" id="text-saudacao">Carregando...</h1>
+      <p class="">DeskMap Web - 1.0 Version</p>
+    </div>
+    <nav class="d-none d-lg-block">
+      <div class="d-flex gap-3">
+        <a class="btn text-decoration-none" href="index.html">Lista de mapas</a>
+        <a class="btn text-decoration-none" href="sobre.html"> Sobre nós</a>
+      </div>
+    </nav>
+
+    <div class="dropdown d-block d-lg-none">
+      <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-list"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+        </svg>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="index.html">Lista de mapas</a></li>
+        <li><a class="dropdown-item" href="#">Não sei o q colocar</a></li>
+        <li><a class="dropdown-item" href="sobre.html">Sobre nós</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="p-3">
+
+    <!-- modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen-lg-down">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Criar um novo mapa de sala</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Ano/Turma do mapa de sala:</label>
+                <input type="text" class="form-control" id="anoturma" placeholder="Ex: Mapa de sala do 3ºA">
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Descrição do mapa (Opcional):</label>
+                <textarea class="form-control" id="descricaoturma" placeholder="Ex: Mapa de sala fixo para o 3ºA"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="btn-criar-mapa" onclick="criarMapa()">Criar novo mapa de sala</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column gap-5">
+      <div class="d-flex flex-column justify-content-center align-items-center mt-5">
+        <p class="h2 fw-bold">Olá, bem-vindo(a).</p>
+        <p class="lead text-secondary">O que deseja fazer hoje?</p>
+      </div>
+
+      <div class="list-btn-options">
+
+        <div class="row">
+          <!-- Botão de criar novo mapa de sala -->
+          <div class="d-flex flex-column gap-3 align-items-center text-center col-12 col-md-6">
+            <a href="#" class="btn btn-primary rounded-4 p-3 btn-option" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="">
+              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="white" class="bi bi-plus-lg"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+              </svg>
+            </a>
+            <p>Criar novo mapa de sala</p>
+          </div>
+
+          <!-- Botão de importar um mapa de sala existente -->
+          <div class="d-flex flex-column gap-3 align-items-center text-center col-12 col-md-6">
+            <a href="#" class="btn btn-primary rounded-4 p-3 btn-option">
+              <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="white" class="bi bi-box-arrow-down"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1z" />
+                <path fill-rule="evenodd"
+                  d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708z" />
+              </svg>
+            </a>
+            <p>Importar um mapa de sala existente</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- js bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
+
+  <!-- js base homepage -->
+  <script src="asset/js/home_page.js"></script>
+</body>
+
+</html>
