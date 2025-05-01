@@ -22,7 +22,7 @@ function criarMapa () {
     let text_descricaoturma;
 
     if (!anoturma) {
-        alert('Digite o ano ou turma da sala!');
+        alert('Digite o ano da turma!');
         return;
     } else {
         text_anoturma = anoturma;
