@@ -48,7 +48,7 @@ if (btnCriarMapa) {
         let condicaoGerarMapa = !document.getElementById('form-nome').value || !document.getElementById('form-fileiras').value || !document.getElementById('form-colunas').value;
         if (condicaoGerarMapa) {
             alert('Preencha as informações solicitadas para gerar um mapa de sala')
-            return
+            return;
         }
 
         turma.nomeTurma = document.getElementById('form-nome').value;
@@ -60,7 +60,7 @@ if (btnCriarMapa) {
         drawMap(turma)
     });
 
-    document.getElementById('btnExportar').addEventListener('click', () => {
+    document.getElementById('btnCriarMapa').addEventListener('click', () => {
         if (turma.alunos.length <= 0) {
             alert('Você deve preencher ao menos uma carteira antes de exportar este mapa!');
             return;
