@@ -42,42 +42,40 @@ function drawMap(turma) {
     }
 }
 
-if (btnCriarMapa) {
-    btnCriarMapa.addEventListener('click', () => {
+btnCriarMapa.addEventListener('click', () => {
 
-        let condicaoGerarMapa = !document.getElementById('form-nome').value || !document.getElementById('form-fileiras').value || !document.getElementById('form-colunas').value;
-        if (condicaoGerarMapa) {
-            alert('Preencha as informações solicitadas para gerar um mapa de sala')
-            return;
-        }
+    let condicaoGerarMapa = !document.getElementById('form-nome').value || !document.getElementById('form-fileiras').value || !document.getElementById('form-colunas').value;
+    if (condicaoGerarMapa) {
+        alert('Preencha as informações solicitadas para gerar um mapa de sala')
+        return;
+    }
 
-        turma.nomeTurma = document.getElementById('form-nome').value;
-        turma.descricaoTurma = document.getElementById('form-descricao').value ? document.getElementById('form-descricao').value : 'Sem descrição';
-        turma.fileiras = document.getElementById('form-fileiras').value;
-        turma.colunas = document.getElementById('form-colunas').value;
-        turma.alunos = []
+    turma.nomeTurma = document.getElementById('form-nome').value;
+    turma.descricaoTurma = document.getElementById('form-descricao').value ? document.getElementById('form-descricao').value : 'Sem descrição';
+    turma.fileiras = document.getElementById('form-fileiras').value;
+    turma.colunas = document.getElementById('form-colunas').value;
+    turma.alunos = []
 
-        drawMap(turma)
-    });
+    drawMap(turma)
+});
 
-    document.getElementById('btnCriarMapa').addEventListener('click', () => {
-        if (turma.alunos.length <= 0) {
-            alert('Você deve preencher ao menos uma carteira antes de exportar este mapa!');
-            return;
-        }
+document.getElementById('btnExportar').addEventListener('click', () => {
+    if (turma.alunos.length <= 0) {
+        alert('Você deve preencher ao menos uma carteira antes de exportar este mapa!');
+        return;
+    }
 
-        const blob = new Blob([JSON.stringify(turma, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `${turma.nomeTurma || 'turma'}.json`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+    const blob = new Blob([JSON.stringify(turma, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${turma.nomeTurma || 'turma'}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
 
-    });
-}
+});
 
 
 document.getElementById('btnImport').addEventListener('click', () => {
